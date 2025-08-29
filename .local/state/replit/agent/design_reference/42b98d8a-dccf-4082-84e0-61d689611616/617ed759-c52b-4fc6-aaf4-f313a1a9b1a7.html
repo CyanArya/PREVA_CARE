@@ -1,0 +1,514 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feature Showcase Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                    colors: {
+                        background: "var(--background)",
+                        foreground: "var(--foreground)",
+                        card: {
+                            DEFAULT: "var(--card)",
+                            foreground: "var(--card-foreground)",
+                        },
+                        popover: {
+                            DEFAULT: "var(--popover)",
+                            foreground: "var(--popover-foreground)",
+                        },
+                        primary: {
+                            DEFAULT: "var(--primary)",
+                            foreground: "var(--primary-foreground)",
+                        },
+                        secondary: {
+                            DEFAULT: "var(--secondary)",
+                            foreground: "var(--secondary-foreground)",
+                        },
+                        muted: {
+                            DEFAULT: "var(--muted)",
+                            foreground: "var(--muted-foreground)",
+                        },
+                        accent: {
+                            DEFAULT: "var(--accent)",
+                            foreground: "var(--accent-foreground)",
+                        },
+                        destructive: {
+                            DEFAULT: "var(--destructive)",
+                            foreground: "var(--destructive-foreground)",
+                        },
+                        border: "var(--border)",
+                        input: "var(--input)",
+                        ring: "var(--ring)",
+                    },
+                    fontFamily: {
+                        sans: ["var(--font-sans)"],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-in': 'slideIn 0.3s ease-out',
+                    }
+                },
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --background: hsl(210 40% 98%);
+            --foreground: hsl(210 10% 12%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(210 10% 12%);
+            --popover: hsl(0 0% 100%);
+            --popover-foreground: hsl(210 10% 12%);
+            --primary: hsl(221 83% 53%);
+            --primary-foreground: hsl(0 0% 100%);
+            --secondary: hsl(210 40% 96%);
+            --secondary-foreground: hsl(210 10% 12%);
+            --muted: hsl(210 40% 96%);
+            --muted-foreground: hsl(210 10% 45%);
+            --accent: hsl(210 40% 96%);
+            --accent-foreground: hsl(210 10% 12%);
+            --destructive: hsl(0 84% 60%);
+            --destructive-foreground: hsl(0 0% 100%);
+            --border: hsl(210 40% 85%);
+            --input: hsl(210 40% 96%);
+            --ring: hsl(221 83% 53%);
+            --radius: 8px;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .feature-showcase.sticky {
+            position: sticky;
+            top: 0;
+        }
+
+        .phone-mockup {
+            background: linear-gradient(145deg, #f8fafc 0%, #e2e8f0 100%);
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+        }
+
+        .feature-point {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-point.active {
+            background: var(--primary);
+            box-shadow: 0 0 0 4px hsla(221, 83%, 53%, 0.1);
+        }
+
+        .content-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-arrow {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            transition: all 0.2s ease;
+        }
+
+        .nav-arrow:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground">
+    <!-- Context section before feature showcase -->
+    <section class="py-16 bg-gradient-to-b from-primary/5 to-background">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Revolutionary Features</h2>
+            <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Discover how our innovative features transform the way you work, connect, and achieve your goals.
+            </p>
+        </div>
+    </section>
+
+    <!-- @COMPONENT: FeatureShowcase [features array, onFeatureChange] -->
+    <section id="feature-showcase" class="feature-showcase min-h-screen bg-background py-12 overflow-hidden" data-implementation="Implement scroll detection and sticky behavior with Intersection Observer">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center max-w-6xl mx-auto">
+                
+                <!-- Left Side: iPhone Mockup + Navigation -->
+                <div class="relative flex flex-col items-center lg:items-start">
+                    <!-- Navigation Arrows -->
+                    <div class="flex gap-4 mb-8 lg:mb-12">
+                        <button 
+                            id="prev-btn" 
+                            class="nav-arrow w-12 h-12 rounded-full border border-border flex items-center justify-center shadow-lg"
+                            data-event="click:handlePrevFeature"
+                            data-implementation="Should navigate to previous feature with content updates">
+                            <i class="fas fa-chevron-left text-muted-foreground"></i>
+                        </button>
+                        <button 
+                            id="next-btn" 
+                            class="nav-arrow w-12 h-12 rounded-full border border-border flex items-center justify-center shadow-lg"
+                            data-event="click:handleNextFeature"
+                            data-implementation="Should navigate to next feature with content updates">
+                            <i class="fas fa-chevron-right text-muted-foreground"></i>
+                        </button>
+                    </div>
+
+                    <!-- iPhone Mockup Container -->
+                    <div class="relative w-full max-w-sm mx-auto lg:mx-0">
+                        <!-- iPhone Frame -->
+                        <div class="phone-mockup relative w-full aspect-[9/19] rounded-[2.5rem] p-2">
+                            <!-- Screen Content -->
+                            <div class="w-full h-full bg-card rounded-[2rem] overflow-hidden relative">
+                                <!-- Dynamic iPhone Image -->
+                                <!-- Modern smartphone interface showing productivity dashboard with charts and notifications -->
+                                <img 
+                                    id="feature-image" 
+                                    src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=800" 
+                                    alt="Feature demonstration" 
+                                    class="w-full h-full object-cover content-transition"
+                                    data-bind="features[activeIndex].image"
+                                    data-mock="true">
+                                
+                                <!-- Status Bar Overlay -->
+                                <div class="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/20 to-transparent flex items-center justify-between px-6 text-white text-sm">
+                                    <div class="flex items-center gap-1">
+                                        <div class="w-1 h-1 bg-white rounded-full"></div>
+                                        <div class="w-1 h-1 bg-white rounded-full"></div>
+                                        <div class="w-1 h-1 bg-white rounded-full"></div>
+                                    </div>
+                                    <div class="font-medium">9:41</div>
+                                    <div class="flex items-center gap-1">
+                                        <i class="fas fa-signal text-xs"></i>
+                                        <i class="fas fa-wifi text-xs"></i>
+                                        <i class="fas fa-battery-full text-xs"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Area -->
+                    <div class="mt-8 lg:mt-12 text-center lg:text-left max-w-md">
+                        <h3 id="feature-heading" class="text-2xl lg:text-3xl font-bold mb-4 content-transition" data-bind="features[activeIndex].title" data-mock="true">
+                            Smart Analytics Dashboard
+                        </h3>
+                        <p id="feature-description" class="text-muted-foreground text-lg leading-relaxed content-transition" data-bind="features[activeIndex].description" data-mock="true">
+                            Get real-time insights into your performance with our advanced analytics dashboard. Track metrics, identify trends, and make data-driven decisions effortlessly.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Side: Feature Points -->
+                <div class="flex flex-col items-center lg:items-end space-y-8 lg:space-y-12">
+                    
+                    <!-- @MAP: features.map((feature, index) => ( -->
+                    
+                    <!-- Feature Point 1 -->
+                    <div class="flex items-center gap-6 lg:gap-8 cursor-pointer group" data-feature-index="0" data-event="click:handleFeatureClick" data-implementation="Should set active feature and update content">
+                        <div class="text-right flex-1 max-w-xs lg:max-w-sm">
+                            <h4 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors" data-mock="true">Smart Analytics</h4>
+                            <p class="text-muted-foreground text-sm leading-relaxed" data-mock="true">Real-time performance insights and trend analysis</p>
+                        </div>
+                        <div class="feature-point active w-4 h-4 rounded-full bg-muted border-2 border-border flex-shrink-0"></div>
+                    </div>
+
+                    <!-- Feature Point 2 -->
+                    <div class="flex items-center gap-6 lg:gap-8 cursor-pointer group" data-feature-index="1" data-event="click:handleFeatureClick" data-implementation="Should set active feature and update content">
+                        <div class="text-right flex-1 max-w-xs lg:max-w-sm">
+                            <h4 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors" data-mock="true">Team Collaboration</h4>
+                            <p class="text-muted-foreground text-sm leading-relaxed" data-mock="true">Seamless workflow management and team communication</p>
+                        </div>
+                        <div class="feature-point w-4 h-4 rounded-full bg-muted border-2 border-border flex-shrink-0"></div>
+                    </div>
+
+                    <!-- Feature Point 3 -->
+                    <div class="flex items-center gap-6 lg:gap-8 cursor-pointer group" data-feature-index="2" data-event="click:handleFeatureClick" data-implementation="Should set active feature and update content">
+                        <div class="text-right flex-1 max-w-xs lg:max-w-sm">
+                            <h4 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors" data-mock="true">AI Integration</h4>
+                            <p class="text-muted-foreground text-sm leading-relaxed" data-mock="true">Intelligent automation and smart recommendations</p>
+                        </div>
+                        <div class="feature-point w-4 h-4 rounded-full bg-muted border-2 border-border flex-shrink-0"></div>
+                    </div>
+
+                    <!-- Feature Point 4 -->
+                    <div class="flex items-center gap-6 lg:gap-8 cursor-pointer group" data-feature-index="3" data-event="click:handleFeatureClick" data-implementation="Should set active feature and update content">
+                        <div class="text-right flex-1 max-w-xs lg:max-w-sm">
+                            <h4 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors" data-mock="true">Security & Privacy</h4>
+                            <p class="text-muted-foreground text-sm leading-relaxed" data-mock="true">Enterprise-grade security with end-to-end encryption</p>
+                        </div>
+                        <div class="feature-point w-4 h-4 rounded-full bg-muted border-2 border-border flex-shrink-0"></div>
+                    </div>
+
+                    <!-- Feature Point 5 -->
+                    <div class="flex items-center gap-6 lg:gap-8 cursor-pointer group" data-feature-index="4" data-event="click:handleFeatureClick" data-implementation="Should set active feature and update content">
+                        <div class="text-right flex-1 max-w-xs lg:max-w-sm">
+                            <h4 class="text-lg font-semibold mb-2 group-hover:text-primary transition-colors" data-mock="true">Custom Integrations</h4>
+                            <p class="text-muted-foreground text-sm leading-relaxed" data-mock="true">Connect with your favorite tools and platforms</p>
+                        </div>
+                        <div class="feature-point w-4 h-4 rounded-full bg-muted border-2 border-border flex-shrink-0"></div>
+                    </div>
+
+                    <!-- @END_MAP -->
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Indicator for Mobile -->
+        <div class="lg:hidden mt-12 flex justify-center">
+            <div class="flex space-x-2">
+                <!-- @MAP: features.map((_, index) => ( -->
+                <div class="w-2 h-2 rounded-full bg-primary" data-progress-dot data-index="0"></div>
+                <div class="w-2 h-2 rounded-full bg-muted" data-progress-dot data-index="1"></div>
+                <div class="w-2 h-2 rounded-full bg-muted" data-progress-dot data-index="2"></div>
+                <div class="w-2 h-2 rounded-full bg-muted" data-progress-dot data-index="3"></div>
+                <div class="w-2 h-2 rounded-full bg-muted" data-progress-dot data-index="4"></div>
+                <!-- @END_MAP -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: FeatureShowcase -->
+
+    <!-- Section after feature showcase -->
+    <section class="py-16 bg-muted">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
+            <p class="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+                Join thousands of teams already using our platform to boost productivity and collaboration.
+            </p>
+            <button class="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                Start Free Trial
+            </button>
+        </div>
+    </section>
+
+    <script>
+        (function() {
+            // @STATE: activeFeatureIndex:number = 0, isSticky:boolean = false, isAutoAdvancing:boolean = false
+            
+            const features = [
+                {
+                    title: "Smart Analytics Dashboard",
+                    description: "Get real-time insights into your performance with our advanced analytics dashboard. Track metrics, identify trends, and make data-driven decisions effortlessly.",
+                    // Analytics dashboard with colorful charts and graphs
+                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=800"
+                },
+                {
+                    title: "Team Collaboration",
+                    description: "Seamless workflow management and team communication tools that keep everyone aligned and productive, no matter where they work.",
+                    // Team collaboration interface with chat messages and project boards
+                    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=800"
+                },
+                {
+                    title: "AI-Powered Automation",
+                    description: "Intelligent automation and smart recommendations that learn from your workflow to save time and reduce manual tasks.",
+                    // Futuristic AI interface with neural network visualizations
+                    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=800"
+                },
+                {
+                    title: "Advanced Security",
+                    description: "Enterprise-grade security with end-to-end encryption, multi-factor authentication, and comprehensive audit trails for peace of mind.",
+                    // Security dashboard showing shields, locks, and protection indicators
+                    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=800"
+                },
+                {
+                    title: "Custom Integrations",
+                    description: "Connect with your favorite tools and platforms through our extensive API and pre-built integrations for a unified workflow experience.",
+                    // Integration hub showing various app connections and API endpoints
+                    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=800"
+                }
+            ];
+
+            let activeFeatureIndex = 0;
+            let isSticky = false;
+            let isAutoAdvancing = false;
+            let scrollTimeout;
+
+            // DOM elements
+            const showcase = document.getElementById('feature-showcase');
+            const featureImage = document.getElementById('feature-image');
+            const featureHeading = document.getElementById('feature-heading');
+            const featureDescription = document.getElementById('feature-description');
+            const featurePoints = document.querySelectorAll('.feature-point');
+            const progressDots = document.querySelectorAll('[data-progress-dot]');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            // Update content based on active feature
+            function updateFeatureContent(index) {
+                const feature = features[index];
+                
+                // Update image with fade effect
+                featureImage.style.opacity = '0.7';
+                setTimeout(() => {
+                    featureImage.src = feature.image;
+                    featureImage.style.opacity = '1';
+                }, 200);
+
+                // Update text content with slide effect
+                featureHeading.style.transform = 'translateX(-10px)';
+                featureHeading.style.opacity = '0.7';
+                featureDescription.style.transform = 'translateX(-10px)';
+                featureDescription.style.opacity = '0.7';
+
+                setTimeout(() => {
+                    featureHeading.textContent = feature.title;
+                    featureDescription.textContent = feature.description;
+                    featureHeading.style.transform = 'translateX(0)';
+                    featureHeading.style.opacity = '1';
+                    featureDescription.style.transform = 'translateX(0)';
+                    featureDescription.style.opacity = '1';
+                }, 200);
+
+                // Update active states
+                featurePoints.forEach((point, i) => {
+                    point.classList.toggle('active', i === index);
+                });
+
+                progressDots.forEach((dot, i) => {
+                    dot.classList.toggle('bg-primary', i === index);
+                    dot.classList.toggle('bg-muted', i !== index);
+                });
+
+                activeFeatureIndex = index;
+            }
+
+            // Handle feature point clicks
+            document.querySelectorAll('[data-feature-index]').forEach(element => {
+                element.addEventListener('click', (e) => {
+                    const index = parseInt(element.dataset.featureIndex);
+                    updateFeatureContent(index);
+                    isAutoAdvancing = false; // Stop auto-advance when user interacts
+                });
+            });
+
+            // Handle navigation arrows
+            prevBtn.addEventListener('click', () => {
+                const prevIndex = activeFeatureIndex > 0 ? activeFeatureIndex - 1 : features.length - 1;
+                updateFeatureContent(prevIndex);
+                isAutoAdvancing = false;
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const nextIndex = activeFeatureIndex < features.length - 1 ? activeFeatureIndex + 1 : 0;
+                updateFeatureContent(nextIndex);
+                isAutoAdvancing = false;
+            });
+
+            // Intersection Observer for sticky behavior
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // TODO: Implement sticky positioning and scroll-based feature advancement
+                        isSticky = true;
+                        isAutoAdvancing = true;
+                        showcase.classList.add('sticky');
+                    } else {
+                        isSticky = false;
+                        isAutoAdvancing = false;
+                        showcase.classList.remove('sticky');
+                    }
+                });
+            }, {
+                threshold: 0.3
+            });
+
+            observer.observe(showcase);
+
+            // Auto-advance features on scroll (simplified version)
+            let lastScrollY = window.scrollY;
+            let scrollDirection = 'down';
+
+            window.addEventListener('scroll', () => {
+                if (!isAutoAdvancing) return;
+
+                clearTimeout(scrollTimeout);
+                scrollDirection = window.scrollY > lastScrollY ? 'down' : 'up';
+                lastScrollY = window.scrollY;
+
+                scrollTimeout = setTimeout(() => {
+                    if (isAutoAdvancing && scrollDirection === 'down') {
+                        const nextIndex = activeFeatureIndex < features.length - 1 ? activeFeatureIndex + 1 : activeFeatureIndex;
+                        if (nextIndex !== activeFeatureIndex) {
+                            updateFeatureContent(nextIndex);
+                        }
+                    }
+                }, 150);
+            });
+
+            // Keyboard navigation for accessibility
+            document.addEventListener('keydown', (e) => {
+                if (!isSticky) return;
+                
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevBtn.click();
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextBtn.click();
+                }
+            });
+
+            // Touch/swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            showcase.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            showcase.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swipe left - next feature
+                        nextBtn.click();
+                    } else {
+                        // Swipe right - previous feature
+                        prevBtn.click();
+                    }
+                }
+            }
+
+            // Initialize first feature
+            updateFeatureContent(0);
+
+            // Auto-advance demo (can be removed in production)
+            setInterval(() => {
+                if (isAutoAdvancing && document.visibilityState === 'visible') {
+                    const nextIndex = activeFeatureIndex < features.length - 1 ? activeFeatureIndex + 1 : 0;
+                    updateFeatureContent(nextIndex);
+                }
+            }, 4000);
+
+        })();
+    </script>
+</body>
+</html>
